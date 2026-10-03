@@ -56,7 +56,7 @@ function parseApiError(data) {
 function initTurnstile() {
   if (!turnstileWidget) return;
 
-  if (!TURNSTILE_SITE_KEY || TURNSTILE_SITE_KEY === "GANTI_DENGAN_TURNSTILE_SITE_KEY") {
+  if (!TURNSTILE_SITE_KEY || TURNSTILE_SITE_KEY === "0x4AAAAAAFMt_2Hyr9nKwcbN") {
     turnstileWidget.innerHTML = '<div class="captcha-config">Cloudflare Turnstile belum dikonfigurasi. Isi TURNSTILE_SITE_KEY di script.js.</div>';
     return;
   }
