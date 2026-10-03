@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AM Generator Premium</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+        AM Generator Premium
+      </div>
+      <p class="subtitle">Aktivasi Alight Motion Premium · Langsung Pakai</p>
+      <div class="badge-live"><span class="dot"></span> Server Online</div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card">
+      <h2 class="card-title">Aktivasi Lisensi</h2>
+      <p class="card-desc">Hubungkan akun Alight Motion kamu ke server premium dalam hitungan detik.</p>
+
+      <!-- Steps -->
+      <div class="steps">
+        <div class="steps-head">
+          <i class="fas fa-list-ol"></i>
+          Cara Pakai
+        </div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">Masukkan <b>Email Akun AM</b> lalu tekan <b>Kirim</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">Buka email → tahan lama tombol masuk → pilih <b>Salin URL</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">Tempel Magic Link (URL lengkap) di bawah, lalu tekan <b>Aktifkan</b>.</div>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div id="msgBox" class="message" role="alert"></div>
+
+      <!-- Cloudflare Turnstile -->
+      <div class="form-group captcha-group">
+        <label><i class="fas fa-shield-halved"></i> Verifikasi Keamanan</label>
+        <div id="turnstileWidget" class="turnstile-wrap"></div>
+        <small class="captcha-note">Selesaikan verifikasi Cloudflare sebelum menekan Kirim.</small>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email Akun Alight Motion</label>
+        <div class="input-row">
+          <input type="email" id="emailInput" class="input" placeholder="contoh@gmail.com" autocomplete="email" inputmode="email">
+          <button id="sendBtn" class="btn btn-send">Kirim</button>
+        </div>
+      </div>
+
+      <!-- Magic Link -->
+      <div class="form-group">
+        <label><i class="fas fa-link"></i> Magic Link (URL Lengkap dari Email)</label>
+        <textarea id="magicInput" class="input textarea" placeholder="Tempel URL Magic Link lengkap di sini&#10;(JobID akan diambil otomatis)" rows="3" autocomplete="off" spellcheck="false"></textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Activate -->
+      <button id="activateBtn" class="btn btn-primary">
+        <span id="btnText"><i class="fas fa-shield-halved"></i> Verifikasi & Aktifkan</span>
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <a class="wa-btn" href="https://wa.me/6285134750953?text=Halo%20Admin%2C%20saya%20dari%20AM%20Generator%20Premium" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+        Hubungi Owner
+      </a>
+      <p class="credit">© 2026 <span>AM Generator Premium</span></p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
