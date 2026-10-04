@@ -1,155 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AM Account Generator</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Press Start 2P', monospace;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AM Generator Premium</title>
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Cloudflare Turnstile -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-<body class="bg-black text-white min-h-screen flex flex-col justify-between p-4 selection:bg-neutral-800">
+<body>
 
-    <div class="w-full max-w-md mx-auto pt-6">
-        <div class="flex items-center justify-center space-x-3 mb-8">
-            <i class="fa-solid fa-cube text-2xl text-neutral-400"></i>
-            <h1 class="text-xs sm:text-sm tracking-wider text-center">AM GENERATOR</h1>
-        </div>
+  <div class="container">
 
-        <div class="bg-neutral-950 border border-neutral-800 p-6 rounded-none space-y-6 shadow-2xl">
-            <div class="space-y-2">
-                <label class="text-[10px] text-neutral-400 block">EMAIL AKUN</label>
-                <input type="email" id="emailInput" placeholder="masukkan email..." class="w-full bg-black border border-neutral-800 p-3 text-xs text-white focus:outline-none focus:border-white transition-colors">
-            </div>
-
-            <div class="space-y-2">
-                <label class="text-[10px] text-neutral-400 block">PASSWORD AKUN</label>
-                <input type="password" id="passInput" placeholder="masukkan password..." class="w-full bg-black border border-neutral-800 p-3 text-xs text-white focus:outline-none focus:border-white transition-colors">
-            </div>
-
-            <button onclick="generateAccount()" id="generateBtn" class="w-full bg-white text-black font-bold py-3 text-xs hover:bg-neutral-200 transition-colors flex items-center justify-center space-x-2 cursor-pointer">
-                <i class="fa-solid fa-bolt"></i>
-                <span>GENERATE</span>
-            </button>
-
-            <div id="resultBox" class="hidden space-y-4 pt-4 border-t border-neutral-900">
-                <div class="space-y-1">
-                    <span class="text-[9px] text-neutral-500">HASIL AKUN</span>
-                    <div id="resultText" class="bg-black border border-neutral-800 p-3 text-[10px] text-neutral-300 break-all select-all"></div>
-                </div>
-                <button onclick="copyResult()" class="w-full bg-neutral-900 border border-neutral-800 text-white py-2 text-[10px] hover:bg-neutral-800 transition-colors cursor-pointer">
-                    <i class="fa-regular fa-copy mr-1"></i> SALIN
-                </button>
-            </div>
-        </div>
-
-        <div class="mt-6 text-center">
-            <a href="https://aditzmodsdonate.edgeone.dev/" target="_blank" class="inline-flex items-center space-x-2 bg-neutral-900 border border-neutral-800 px-4 py-3 text-[10px] text-neutral-300 hover:text-white hover:border-neutral-700 transition-colors w-full justify-center">
-                <i class="fa-solid fa-heart text-red-500"></i>
-                <span>Donasi Seikhlasnya</span>
-            </a>
-        </div>
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+        AM Generator Premium
+      </div>
+      <p class="subtitle">Aktivasi Alight Motion Premium · Langsung Pakai</p>
+      <div class="badge-live"><span class="dot"></span> Server Online</div>
     </div>
 
-    <footer class="text-center text-[9px] text-neutral-600 py-4">
-        &copy; 2026 AM Generator
-    </footer>
+    <!-- Main Card -->
+    <div class="card">
+      <h2 class="card-title">Aktivasi Lisensi</h2>
+      <p class="card-desc">Hubungkan akun Alight Motion kamu ke server premium dalam hitungan detik.</p>
 
-    <script>
-        async function fetchApiKey() {
-            const urls = [
-                "https://raw.githubusercontent.com/callmezext/enchant-am-generator/main/apikey.json",
-                "https://raw.githubusercontent.com/callmezext/enchant-am-generator/master/apikey.json"
-            ];
-            for (const url of urls) {
-                try {
-                    const response = await fetch(url);
-                    if (response.ok) {
-                        const data = await response.json();
-                        const key = data.apikey || data.key || Object.values(data)[0];
-                        if (key) return key;
-                    }
-                } catch (e) {}
-            }
-            return null;
-        }
+      <!-- Steps -->
+      <div class="steps">
+        <div class="steps-head">
+          <i class="fas fa-list-ol"></i>
+          Cara Pakai
+        </div>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">Masukkan <b>Email Akun AM</b> lalu tekan <b>Kirim</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">Buka email → tahan lama tombol masuk → pilih <b>Salin URL</b>.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">Tempel Magic Link (URL lengkap) di bawah, lalu tekan <b>Aktifkan</b>.</div>
+        </div>
+      </div>
 
-        async function generateAccount() {
-            const email = document.getElementById('emailInput').value.trim();
-            const password = document.getElementById('passInput').value.trim();
-            const btn = document.getElementById('generateBtn');
-            const resultBox = document.getElementById('resultBox');
-            const resultText = document.getElementById('resultText');
+      <!-- Message -->
+      <div id="msgBox" class="message" role="alert"></div>
 
-            if (!email || !password) {
-                resultText.innerText = 'Email dan Password wajib diisi!';
-                resultBox.classList.remove('hidden');
-                return;
-            }
+      <!-- Cloudflare Turnstile -->
+      <div class="form-group captcha-group">
+        <label><i class="fas fa-shield-halved"></i> Verifikasi Keamanan</label>
+        <div id="turnstileWidget" class="turnstile-wrap"></div>
+        <small class="captcha-note">Selesaikan verifikasi Cloudflare sebelum menekan Kirim.</small>
+      </div>
 
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>PROSES...</span>';
-            resultBox.classList.add('hidden');
+      <!-- Email -->
+      <div class="form-group">
+        <label><i class="fas fa-envelope"></i> Email Akun Alight Motion</label>
+        <div class="input-row">
+          <input type="email" id="emailInput" class="input" placeholder="contoh@gmail.com" autocomplete="email" inputmode="email">
+          <button id="sendBtn" class="btn btn-send">Kirim</button>
+        </div>
+      </div>
 
-            try {
-                const apiKey = await fetchApiKey();
-                let apiUrl = `https://enchant-am-generator.vercel.app/api/generate?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
-                if (apiKey) {
-                    apiUrl += `&apikey=${encodeURIComponent(apiKey)}`;
-                }
+      <!-- Magic Link -->
+      <div class="form-group">
+        <label><i class="fas fa-link"></i> Magic Link (URL Lengkap dari Email)</label>
+        <textarea id="magicInput" class="input textarea" placeholder="Tempel URL Magic Link lengkap di sini&#10;(JobID akan diambil otomatis)" rows="3" autocomplete="off" spellcheck="false"></textarea>
+      </div>
 
-                const response = await fetch(apiUrl);
-                const contentType = response.headers.get("content-type");
-                
-                let data;
-                if (contentType && contentType.includes("application/json")) {
-                    data = await response.json();
-                } else {
-                    const textData = await response.text();
-                    try {
-                        data = JSON.parse(textData);
-                    } catch (e) {
-                        data = { status: response.ok, message: textData || "Berhasil diproses" };
-                    }
-                }
+      <div class="divider"></div>
 
-                resultText.innerText = JSON.stringify(data, null, 2);
-                resultBox.classList.remove('hidden');
-            } catch (error) {
-                resultText.innerText = JSON.stringify({
-                    status: true,
-                    email: email,
-                    password: password,
-                    message: "Akun berhasil diproses secara lokal (Fallback Mode)"
-                }, null, 2);
-                resultBox.classList.remove('hidden');
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-bolt"></i><span>GENERATE</span>';
-            }
-        }
+      <!-- Activate -->
+      <button id="activateBtn" class="btn btn-primary">
+        <span id="btnText"><i class="fas fa-shield-halved"></i> Verifikasi & Aktifkan</span>
+      </button>
+    </div>
 
-        function copyResult() {
-            const text = document.getElementById('resultText').innerText;
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            try {
-                document.execCommand('copy');
-                alert('Berhasil disalin!');
-            } catch (err) {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('Berhasil disalin!');
-                });
-            }
-            document.body.removeChild(textarea);
-        }
-    </script>
+    <!-- Footer -->
+    <div class="footer">
+      <a class="wa-btn" href="https://wa.me/6285134750953?text=Halo%20Admin%2C%20saya%20dari%20AM%20Generator%20Premium" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i>
+        Hubungi Owner
+      </a>
+      <p class="credit">© 2026 <span>AM Generator Premium</span></p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
