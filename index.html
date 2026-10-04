@@ -45,7 +45,6 @@
       max-width: 420px;
     }
 
-    /* Header */
     .header {
       text-align: center;
       margin-bottom: 24px;
@@ -57,7 +56,6 @@
       gap: 10px;
       font-size: 1.3rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
       color: var(--text-main);
       margin-bottom: 6px;
     }
@@ -97,10 +95,8 @@
       height: 6px;
       background-color: #22c55e;
       border-radius: 50%;
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
     }
 
-    /* Card */
     .card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -122,7 +118,6 @@
       line-height: 1.4;
     }
 
-    /* Steps */
     .steps {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border-color);
@@ -140,7 +135,6 @@
       align-items: center;
       gap: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
     .step-item {
@@ -171,7 +165,6 @@
       margin-top: 1px;
     }
 
-    /* Message Box */
     .message {
       display: none;
       padding: 12px;
@@ -195,7 +188,6 @@
       display: block;
     }
 
-    /* Form Elements */
     .form-group {
       margin-bottom: 16px;
     }
@@ -226,7 +218,6 @@
       color: var(--text-main);
       font-size: 0.9rem;
       outline: none;
-      transition: border-color 0.2s;
     }
 
     .input:focus {
@@ -242,7 +233,6 @@
       line-height: 1.4;
     }
 
-    /* Buttons */
     .btn {
       border: none;
       border-radius: 10px;
@@ -254,7 +244,6 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: background 0.2s, opacity 0.2s;
     }
 
     .btn-send {
@@ -285,7 +274,6 @@
       margin: 20px 0;
     }
 
-    /* Footer */
     .footer {
       text-align: center;
       margin-top: 20px;
@@ -299,7 +287,6 @@
       text-decoration: none;
       font-size: 0.8rem;
       margin-bottom: 12px;
-      transition: color 0.2s;
     }
 
     .wa-btn:hover {
@@ -319,8 +306,6 @@
 <body>
 
   <div class="container">
-
-    <!-- Header -->
     <div class="header">
       <div class="logo">
         <div class="logo-icon"><i class="fas fa-bolt"></i></div>
@@ -330,17 +315,12 @@
       <div class="badge-live"><span class="dot"></span> Server Online</div>
     </div>
 
-    <!-- Main Card -->
     <div class="card">
       <h2 class="card-title">Aktivasi Lisensi</h2>
       <p class="card-desc">Hubungkan akun Alight Motion kamu ke server premium dalam hitungan detik.</p>
 
-      <!-- Steps -->
       <div class="steps">
-        <div class="steps-head">
-          <i class="fas fa-list-ol"></i>
-          Cara Pakai
-        </div>
+        <div class="steps-head"><i class="fas fa-list-ol"></i> Cara Pakai</div>
         <div class="step-item">
           <div class="step-num">1</div>
           <div class="step-text">Masukkan <b>Email Akun AM</b> lalu tekan <b>Kirim</b>.</div>
@@ -355,10 +335,8 @@
         </div>
       </div>
 
-      <!-- Message -->
       <div id="msgBox" class="message" role="alert"></div>
 
-      <!-- Email -->
       <div class="form-group">
         <label><i class="fas fa-envelope"></i> Email Akun Alight Motion</label>
         <div class="input-row">
@@ -367,7 +345,6 @@
         </div>
       </div>
 
-      <!-- Magic Link -->
       <div class="form-group">
         <label><i class="fas fa-link"></i> Magic Link (URL Lengkap dari Email)</label>
         <textarea id="magicInput" class="input textarea" placeholder="Tempel URL Magic Link lengkap di sini&#10;(JobID akan diambil otomatis)" rows="3" autocomplete="off" spellcheck="false"></textarea>
@@ -375,21 +352,17 @@
 
       <div class="divider"></div>
 
-      <!-- Activate -->
       <button id="activateBtn" class="btn btn-primary">
-        <span id="btnText"><i class="fas fa-shield-halved"></i> Verifikasi & Aktifkan</span>
+        <span id="btnText"><i class="fas fa-bolt"></i> Aktifkan Sekarang</span>
       </button>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
       <a class="wa-btn" href="https://wa.me/6285134750953?text=Halo%20Admin%2C%20saya%20dari%20AM%20Generator%20Premium" target="_blank" rel="noopener">
-        <i class="fab fa-whatsapp"></i>
-        Hubungi Owner
+        <i class="fab fa-whatsapp"></i> Hubungi Owner
       </a>
       <p class="credit">© 2026 <span>AM Generator Premium</span></p>
     </div>
-
   </div>
 
   <script src="script.js"></script>
