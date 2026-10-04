@@ -3,9 +3,6 @@
 // ============================================================
 const API_BASE = "https://am.dapjisync.my.id";
 const API_KEY  = "FREE";
-// Isi dengan Cloudflare Turnstile SITE KEY milik server/API Anda.
-// Site Key bersifat publik; jangan masukkan Secret Key di sini.
-const TURNSTILE_SITE_KEY = "GANTI_DENGAN_TURNSTILE_SITE_KEY";
 // ============================================================
 
 const emailInput  = document.getElementById("emailInput");
@@ -14,10 +11,6 @@ const sendBtn     = document.getElementById("sendBtn");
 const activateBtn = document.getElementById("activateBtn");
 const btnText     = document.getElementById("btnText");
 const msgBox      = document.getElementById("msgBox");
-const turnstileWidget = document.getElementById("turnstileWidget");
-
-let turnstileToken = "";
-let turnstileWidgetId = null;
 
 // jobId WAJIB dari response Step 1 (/api/send)
 let cachedJobId = "";
@@ -52,68 +45,12 @@ function parseApiError(data) {
   return "Gagal memproses permintaan.";
 }
 
-// ── Cloudflare Turnstile ─────────────────────────────────────
-function initTurnstile() {
-  if (!turnstileWidget) return;
-
-  if (!TURNSTILE_SITE_KEY || TURNSTILE_SITE_KEY === "0x4AAAAAAFMt_2Hyr9nKwcbN") {
-    turnstileWidget.innerHTML = '<div class="captcha-config">Cloudflare Turnstile belum dikonfigurasi. Isi TURNSTILE_SITE_KEY di script.js.</div>';
-    return;
-  }
-
-  if (!window.turnstile) {
-    setTimeout(initTurnstile, 300);
-    return;
-  }
-
-  turnstileWidgetId = window.turnstile.render(turnstileWidget, {
-    sitekey: TURNSTILE_SITE_KEY,
-    callback: token => {
-      turnstileToken = token || "";
-      hideMsg();
-    },
-    'expired-callback': () => {
-      turnstileToken = "";
-      showMsg("Verifikasi Cloudflare kedaluwarsa. Selesaikan captcha lagi.", "error");
-    },
-    'error-callback': () => {
-      turnstileToken = "";
-      showMsg("Verifikasi Cloudflare gagal. Muat ulang halaman lalu coba lagi.", "error");
-    }
-  });
-}
-
-function resetTurnstile() {
-  turnstileToken = "";
-  if (window.turnstile && turnstileWidgetId !== null) {
-    window.turnstile.reset(turnstileWidgetId);
-  }
-}
-
-function captchaBody(token) {
-  // Beberapa backend memakai nama field berbeda. Semua alias umum dikirim
-  // agar mudah disesuaikan; server tetap harus memvalidasi token di backend.
-  return {
-    'cf-turnstile-response': token,
-    turnstileToken: token,
-    cfToken: token,
-    captchaToken: token
-  };
-}
-
-initTurnstile();
-
 // ── STEP 1: Kirim Magic Link → dapat jobId dari response ─────
 sendBtn.addEventListener("click", async () => {
   const email = emailInput.value.trim();
   if (!email || !email.includes("@")) {
     showMsg("Masukkan alamat email yang valid.", "error");
     emailInput.focus();
-    return;
-  }
-
-  if (!turnstileToken) {
-    showMsg("Selesaikan verifikasi Cloudflare terlebih dahulu.", "error");
     return;
   }
 
@@ -128,11 +65,9 @@ sendBtn.addEventListener("click", async () => {
     const res  = await fetch(`${API_BASE}/api/send`, {
       method:  "POST",
       headers: { "Content-Type": "application/json" },
-      body:    JSON.stringify({ gmail: email, apikey: API_KEY, ...captchaBody(turnstileToken) })
+      body:    JSON.stringify({ gmail: email, apikey: API_KEY })
     });
     const data = await res.json();
-    // Turnstile token umumnya hanya boleh dipakai sekali.
-    resetTurnstile();
 
     // Ambil jobId dari response Step 1 — ini satu-satunya sumber jobId
     const jobId = data.jobId || data.job_id
@@ -208,12 +143,12 @@ activateBtn.addEventListener("click", async () => {
       cachedJobId = "";
     } else {
       showMsg(parseApiError(data), "error");
-      btnText.innerHTML = '<i class="fas fa-shield-halved"></i> Verifikasi & Aktifkan';
+      btnText.innerHTML = '<i class="fas fa-bolt"></i> Aktifkan Sekarang';
       activateBtn.disabled = false;
     }
   } catch (err) {
     showMsg("Koneksi gagal. Periksa internet kamu lalu coba lagi.", "error");
-    btnText.innerHTML = '<i class="fas fa-shield-halved"></i> Verifikasi & Aktifkan';
+    btnText.innerHTML = '<i class="fas fa-bolt"></i> Aktifkan Sekarang';
     activateBtn.disabled = false;
   }
 });
